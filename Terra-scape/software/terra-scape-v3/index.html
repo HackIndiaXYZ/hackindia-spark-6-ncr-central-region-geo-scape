@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Terra-Scape EWS — Command Center v3</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛰️</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.setAttribute('data-theme',localStorage.getItem('ts3')||'dark')</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head><body>
+
+<!-- BOOT ANIMATION -->
+<div class="boot-screen" id="boot">
+  <div class="boot-text" id="boot-lines"></div>
+  <div class="boot-bar"><div class="boot-bar-fill" id="boot-bar"></div></div>
+</div>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-ico">⛰️</div>Terra-Scape&nbsp;<span style="font-weight:400;color:var(--text-secondary)">EWS</span>
+    <div class="badge">v3.0</div>
+    <div class="online-badge" id="online-badge">ONLINE</div>
+  </div>
+  <nav class="tabs">
+    <button class="tab on" data-tab="pg-overview">Overview</button>
+    <button class="tab" data-tab="pg-dash">Dashboard</button>
+    <button class="tab" data-tab="pg-analytics">Analytics</button>
+    <button class="tab" data-tab="pg-fusion">Community</button>
+    <button class="tab" data-tab="pg-response">Response</button>
+    <button class="tab" data-tab="pg-safety">Safety</button>
+    <button class="tab" data-tab="pg-hw">Hardware</button>
+    <button class="tab danger-t" data-tab="pg-sim">⚡ Simulation</button>
+  </nav>
+  <div class="ctrls">
+    <select class="ctrl-sel" id="lang-sel">
+      <option value="en">English</option><option value="hi">हिंदी</option>
+      <option value="dg">ڈوگری (Dogri)</option><option value="ur">اردو (Urdu)</option>
+      <option value="ph">पहाड़ी (Pahari)</option>
+    </select>
+    <button class="ctrl-btn" id="theme-btn">🌓</button>
+  </div>
+</header>
+
+<!-- BANNER -->
+<div class="banner" id="banner">
+  <div class="b-left">
+    <div class="led" id="led"></div>
+    <div>
+      <div class="b-title" id="b-title">NETWORK SECURE — CONTINUOUS MONITORING</div>
+      <div class="b-sub">3 Active Nodes · Last Sync: <span id="sync-ts">Just Now</span> · LoRaWAN OK</div>
+    </div>
+  </div>
+  <div class="b-right">
+    <div class="uptime" id="uptime">UPTIME 00:00:00</div>
+    <div class="pill" id="pill">● GREEN ZONE</div>
+  </div>
+</div>
+
+<!-- ═══ PG: OVERVIEW ═══ -->
+<div class="pg on" id="pg-overview"><div class="inner">
+
+  <div class="card mb6">
+    <div class="card-in" style="text-align:center;padding:3rem 2rem">
+      <h1 style="font-size:2.2rem;font-weight:900;letter-spacing:-1px;margin-bottom:0.5rem">⛰️ Terra-Scape EWS</h1>
+      <p style="font-size:1.1rem;color:var(--text-secondary);max-width:700px;margin:0 auto 2rem">An Integrated, Low-Cost Landslide Early Warning System designed for Himalayan Watershed Regions. Combining MEMS sensor technology, GIS topological analysis, and community intelligence to save lives.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <div class="badge" style="padding:6px 16px;font-size:0.75rem">Make in India 🇮🇳</div>
+        <div class="badge" style="padding:6px 16px;font-size:0.75rem;background:rgba(63,185,80,0.12);color:var(--green);border-color:rgba(63,185,80,0.25)">Low-Cost MEMS</div>
+        <div class="badge" style="padding:6px 16px;font-size:0.75rem;background:rgba(163,113,247,0.12);color:var(--purple);border-color:rgba(163,113,247,0.25)">Edge Computing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-Tier Architecture -->
+  <p class="sh">SYSTEM ARCHITECTURE — DATA FLOW</p>
+  <div class="card mb6">
+    <div class="card-in">
+      <div class="arch-flow">
+        <div class="arch-node"><div class="arch-icon">⛰️</div><div class="arch-label">Slope</div><div class="arch-sub">Terrain</div></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><div class="arch-icon">📐</div><div class="arch-label">MPU-6050</div><div class="arch-sub">Tilt Sensor</div></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><div class="arch-icon">💧</div><div class="arch-label">Capacitive</div><div class="arch-sub">Soil Sensor</div></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><div class="arch-icon">🧠</div><div class="arch-label">Arduino</div><div class="arch-sub">Edge Compute</div></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><div class="arch-icon">📡</div><div class="arch-label">LoRaWAN</div><div class="arch-sub">10km Mesh</div></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><div class="arch-icon">☁️</div><div class="arch-label">Server</div><div class="arch-sub">Analytics</div></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><div class="arch-icon">📱</div><div class="arch-label">Dashboard</div><div class="arch-sub">This UI</div></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><div class="arch-icon">📢</div><div class="arch-label">SMS Alert</div><div class="arch-sub">5,420 Users</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 Tiers -->
+  <div class="g3 mb6">
+    <div class="card"><div class="card-in" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:0.5rem">🔌</div>
+      <h3 style="margin-bottom:0.5rem">The Nervous System</h3>
+      <p class="t-sec t-sm">Ground-level MEMS sensors (MPU-6050 + Capacitive Soil) detecting immediate threats — tilt shifts and moisture saturation in real-time.</p>
+    </div></div>
+    <div class="card"><div class="card-in" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:0.5rem">🧠</div>
+      <h3 style="margin-bottom:0.5rem">The Brain</h3>
+      <p class="t-sec t-sm">QGIS-powered topographical mapping and AI-driven risk scoring. Predicts long-term susceptibility through DEM analysis, slope classification, and rainfall correlation.</p>
+    </div></div>
+    <div class="card"><div class="card-in" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:0.5rem">📢</div>
+      <h3 style="margin-bottom:0.5rem">The Voice</h3>
+      <p class="t-sec t-sm">This community dashboard with multi-language SMS broadcasts. Real-time alerts to 5,420+ registered devices within the geofenced danger sector.</p>
+    </div></div>
+  </div>
+
+  <!-- Team -->
+  <p class="sh">RESEARCH TEAM — GEO-SCAPE</p>
+  <div class="g4">
+    <div class="card"><div class="card-in" style="text-align:center"><div style="font-size:2rem;margin-bottom:0.5rem">👤</div><h4>Team Member 1</h4><p class="t-mut t-xs">Project Lead</p></div></div>
+    <div class="card"><div class="card-in" style="text-align:center"><div style="font-size:2rem;margin-bottom:0.5rem">👤</div><h4>Team Member 2</h4><p class="t-mut t-xs">Hardware Engineer</p></div></div>
+    <div class="card"><div class="card-in" style="text-align:center"><div style="font-size:2rem;margin-bottom:0.5rem">👤</div><h4>Team Member 3</h4><p class="t-mut t-xs">GIS & Analytics</p></div></div>
+    <div class="card"><div class="card-in" style="text-align:center"><div style="font-size:2rem;margin-bottom:0.5rem">👤</div><h4>Team Member 4</h4><p class="t-mut t-xs">Web & IoT</p></div></div>
+  </div>
+
+</div></div>
+
+<!-- ═══ PG: DASHBOARD ═══ -->
+<div class="pg" id="pg-dash"><div class="inner">
+
+  <div class="kpi-grid">
+    <div class="kpi" style="--kpi-c:var(--blue)"><div class="kpi-label">AI Risk Score</div><div class="kpi-val" id="k-risk">18<span style="font-size:1rem;font-weight:600">%</span></div><div class="kpi-sub">Composite threat index</div><div class="kpi-badge up" id="k-risk-b">● BASELINE</div></div>
+    <div class="kpi" style="--kpi-c:var(--green)"><div class="kpi-label">Ground Tilt (Node 01)</div><div class="kpi-val t-g" id="k-tilt">0.0<span style="font-size:1rem">°</span></div><div class="kpi-sub">MPU-6050 X-Axis pitch</div><div class="kpi-badge up">▼ SAFE BAND</div></div>
+    <div class="kpi" style="--kpi-c:var(--cyan)"><div class="kpi-label">Soil Saturation</div><div class="kpi-val t-b" id="k-moist">45<span style="font-size:1rem">%</span></div><div class="kpi-sub">Volumetric water content</div><div class="kpi-badge up">NOMINAL</div></div>
+    <div class="kpi" style="--kpi-c:var(--yellow)"><div class="kpi-label">Ambient Temp</div><div class="kpi-val t-y" id="k-temp">18<span style="font-size:1rem">°C</span></div><div class="kpi-sub">DHT-22 · Mandi Sector</div><div class="kpi-badge wn">🌧 RAIN EXPECTED</div></div>
+  </div>
+
+  <p class="sh">NODE NETWORK — POWER & STATUS</p>
+  <div class="nd-grid mb6">
+    <div class="nd"><div><div class="nd-name">Node 01 — Alpha</div><div class="nd-loc">Demo Unit · Bridge Sector</div><div class="nd-pwr"><span>🔋 94%</span><span>☀️ Charging</span></div></div><div class="nd-right"><div class="nd-status" style="color:var(--green)"><div class="dot dot-g" id="n1d"></div><span id="n1s">ONLINE</span></div><div style="font-size:0.65rem;color:var(--text-muted);margin-top:4px">Ping: 42ms</div></div></div>
+    <div class="nd"><div><div class="nd-name">Node 02 — Beta</div><div class="nd-loc">Hillside · 850m elev.</div><div class="nd-pwr"><span>🔋 78%</span><span>☀️ Charging</span></div></div><div class="nd-right"><div class="nd-status" style="color:var(--green)"><div class="dot dot-g"></div>ONLINE</div><div style="font-size:0.65rem;color:var(--text-muted);margin-top:4px">Ping: 118ms</div></div></div>
+    <div class="nd"><div><div class="nd-name">Node 03 — Gamma</div><div class="nd-loc">Creek Drainage · Upstream</div><div class="nd-pwr"><span>🔋 61%</span><span>🌧 Low Solar</span></div></div><div class="nd-right"><div class="nd-status" style="color:var(--yellow)"><div class="dot dot-y"></div>CAUTION</div><div style="font-size:0.65rem;color:var(--text-muted);margin-top:4px">Ping: 230ms</div></div></div>
+  </div>
+
+  <div class="fx mb6">
+    <div class="f2">
+      <div class="map" style="height:340px">
+        <img src="assets/qgis_basemap_1774600884505.png" alt="Map">
+        <div class="map-pin" style="top:42%;left:31%;background:var(--green);color:var(--green)" id="pin1"></div>
+        <div class="map-pin" style="top:56%;left:66%;background:var(--green);color:var(--green)"></div>
+        <div class="map-pin" style="top:31%;left:76%;background:var(--yellow);color:var(--yellow)"></div>
+        <div class="map-foot"><div style="font-weight:700;font-size:1rem">Himalayan Watershed Array</div><div style="font-size:0.8rem;opacity:0.7;margin-top:2px">3 nodes · LoRaWAN mesh · Real-time overlay</div></div>
+      </div>
+    </div>
+    <div class="f1 fc">
+      <div class="card"><div class="card-hd"><span class="card-t">Predictive AI Risk</span><span class="card-m t-g" id="ai-lbl">BASELINE SECURE</span></div><div class="card-in"><div class="risk-wrap"><div class="risk-ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="var(--bg-elevated)" stroke-width="10"/><circle id="risk-arc" cx="50" cy="50" r="42" fill="none" stroke="var(--green)" stroke-width="10" stroke-dasharray="264" stroke-dashoffset="215" stroke-linecap="round" style="transition:stroke-dashoffset 0.8s ease,stroke 0.4s"/></svg><div class="risk-ring-val"><span id="risk-pct">18</span><span style="font-size:0.75rem;color:var(--text-muted)">%</span><span class="risk-ring-lbl">RISK</span></div></div><div style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6">Fusing kinematic deviation, soil saturation, and weather advisory.</div></div></div></div>
+      <div class="weather"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.8px;opacity:0.7;margin-bottom:0.3rem">Local · Mandi</div><div style="font-size:3rem;font-weight:800;letter-spacing:-2px">18°C</div><div style="font-size:0.9rem;opacity:0.85;font-weight:500;margin-top:0.2rem">🌦️ Heavy Rainfall Expected</div><div style="margin-top:0.6rem;font-size:0.78rem;opacity:0.6">Wind 22km/h · Hum 78% · Vis 4km</div></div><div style="font-size:3.5rem;line-height:1">🌧️</div></div></div>
+    </div>
+  </div>
+
+  <p class="sh">LIVE SENSOR TELEMETRY — NODE 01</p>
+  <div class="g3 mb6">
+    <div class="card"><div class="card-hd"><span class="card-t">MPU-6050 Kinematics</span></div><div class="card-in"><div class="ch-wrap"><canvas id="tiltChart"></canvas></div><div style="text-align:center;padding-top:0.5rem;font-size:0.85rem">Pitch: <strong class="t-b" id="tilt-txt">0.0°</strong></div></div></div>
+    <div class="card"><div class="card-hd"><span class="card-t">Capacitive Saturation</span></div><div class="card-in"><div class="ch-wrap"><canvas id="moistChart"></canvas></div><div style="text-align:center;padding-top:0.5rem;font-size:0.85rem">Saturation: <strong class="t-g" id="moist-txt">45%</strong></div></div></div>
+    <div class="card"><div class="card-hd"><span class="card-t">DHT-22 Ambient</span></div><div class="card-in"><div class="ch-wrap"><canvas id="tempChart"></canvas></div><div style="display:flex;justify-content:space-around;padding-top:0.5rem;font-size:0.85rem"><span>Temp: <strong class="t-y" id="temp-txt">24.5°C</strong></span><span>Hum: <strong class="t-b" id="hum-txt">65%</strong></span></div></div></div>
+  </div>
+
+  <!-- Alert History Log -->
+  <p class="sh">ALERT HISTORY (LAST 24 HOURS)</p>
+  <div class="card"><div class="card-in">
+    <div class="alert-log" id="alert-log">
+      <div class="al-row"><div class="al-time">17:30</div><div class="al-level s">SAFE</div><div class="al-msg">Routine telemetry confirmed. All parameters nominal.</div><div class="al-node">N01</div></div>
+      <div class="al-row"><div class="al-time">14:35</div><div class="al-level w">WARN</div><div class="al-msg">Moisture spike detected (72%). Entering elevated monitoring.</div><div class="al-node">N01</div></div>
+      <div class="al-row"><div class="al-time">14:30</div><div class="al-level s">INTEL</div><div class="al-msg">Citizen report received: "Cracks on retaining wall" — GPS verified.</div><div class="al-node">N01</div></div>
+      <div class="al-row"><div class="al-time">12:00</div><div class="al-level s">SAFE</div><div class="al-msg">Scheduled heartbeat. Battery 94%. Solar charging active.</div><div class="al-node">N01</div></div>
+      <div class="al-row"><div class="al-time">09:15</div><div class="al-level w">WARN</div><div class="al-msg">Node 03 latency > 200ms. Possible antenna degradation.</div><div class="al-node">N03</div></div>
+      <div class="al-row"><div class="al-time">06:00</div><div class="al-level s">SAFE</div><div class="al-msg">Dawn calibration cycle complete. MPU zero-offset: 0.02°.</div><div class="al-node">ALL</div></div>
+    </div>
+  </div></div>
+
+</div></div>
+
+<!-- ═══ PG: ANALYTICS ═══ -->
+<div class="pg" id="pg-analytics"><div class="inner">
+  <div class="card mb6"><div class="card-hd"><span class="card-t">Historical Pre-Failure Trend (7-Day)</span><span class="card-m">Predictive Evidence</span></div><div class="card-in"><p class="t-sm t-sec mb4">We don't just detect events — we observe <strong>patterns leading to failure.</strong> Moisture reaches critical saturation 48h before kinematic shift.</p><div class="ch-wrap-lg"><canvas id="histChart"></canvas></div></div></div>
+  <div class="card"><div class="card-hd"><span class="card-t">QGIS Susceptibility Heatmap</span><span class="card-m">DEM Analysis</span></div><div class="card-in"><p class="t-sm t-sec mb4">QGIS geometry processing generated this susceptibility overlay from DEM → Slope → Aspect analysis, which informed precise node placement.</p><div class="map" style="height:380px"><img src="assets/qgis_heatmap_1774600904143.png" alt="Heatmap"></div></div></div>
+
+  <!-- QGIS GEOSPATIAL STUDY SECTION -->
+  <div style="margin-top:2rem; padding-top:2rem; border-top:1px solid var(--border-dim)">
+    <p class="sh" style="margin-bottom:1.5rem">QGIS GEOSPATIAL ANALYSIS — STUDY AREA: HIMACHAL PRADESH, WESTERN HIMALAYAS</p>
+    <div class="card mb6"><div class="card-in">
+      <p class="t-sm t-sec">We conducted a comprehensive geospatial analysis of the landslide-prone sectors across the Mandi–Kullu watershed corridor using QGIS 3.x geoprocessing tools. The study area spans the Beas River valley and adjacent mountain slopes in Himachal Pradesh, a region classified as <strong>Seismic Zone IV–V</strong> with annual average rainfall exceeding 1,500mm. Below are the sequential raster layers we generated to build a multi-criteria Landslide Susceptibility Index (LSI) for optimal sensor node deployment.</p>
+    </div></div>
+
+    <!-- 1. DEM -->
+    <div class="card mb6">
+      <div class="card-hd"><span class="card-t">01 — Digital Elevation Model (SRTM DEM)</span><span class="card-m">Source: NASA SRTM 30m</span></div>
+      <div class="card-in">
+        <p class="t-sm t-sec mb4">The foundation of all terrain analysis. This DEM raster was acquired from NASA's SRTM (Shuttle Radar Topography Mission) dataset at 1 arc-second (~30m) resolution. Elevation values range from <strong>585m</strong> (valley floor, Beas River) to <strong>6,473m</strong> (peak glacial ridges). Darker pixels represent deeper valleys and drainage corridors — the primary zones where water accumulates and slope failure initiates. This layer is the input for all subsequent derivative rasters.</p>
+        <div class="map" style="height:320px"><img src="assets/qgis_dem.png" alt="DEM Data Map" style="object-fit:contain; background:#1a1a1a;"></div>
+      </div>
+    </div>
+
+    <!-- 2. Contour -->
+    <div class="card mb6">
+      <div class="card-hd"><span class="card-t">02 — Contour Map (Elevation Isolines)</span><span class="card-m">Interval: 50m spacing</span></div>
+      <div class="card-in">
+        <p class="t-sm t-sec mb4">Generated using the <strong>GDAL Contour</strong> algorithm from the DEM layer. Each contour line represents a constant elevation interval, allowing us to visually identify steep terrain (closely-spaced lines) vs. flat plateaus (widely-spaced lines). Dense contour clustering in the southwest and northeast sectors directly correlates with high-gradient slopes where shear stress exceeds soil cohesion — the primary physical precondition for translational and rotational landslides.</p>
+        <div class="map" style="height:320px"><img src="assets/qgis_contour.png" alt="Contour Map" style="object-fit:contain; background:#fef0f5;"></div>
+      </div>
+    </div>
+
+    <!-- 3. Hillshade -->
+    <div class="card mb6">
+      <div class="card-hd"><span class="card-t">03 — Hillshade Relief Model</span><span class="card-m">Azimuth: 315° · Altitude: 45°</span></div>
+      <div class="card-in">
+        <p class="t-sm t-sec mb4">The hillshade raster simulates solar illumination across the terrain surface from a northwest light source at 45° altitude. This three-dimensional shaded relief highlights <strong>micro-topographic features</strong> invisible on raw DEM — such as existing landslide scarps, debris fans, escarpment edges, and ancient failure planes. Our team used this layer to visually validate identified risk zones before deploying hardware at the Alpha, Beta, and Gamma node positions.</p>
+        <div class="map" style="height:320px"><img src="assets/qgis_hillshade.png" alt="Hillshade Map" style="object-fit:contain; background:#0a0a0a;"></div>
+      </div>
+    </div>
+
+    <!-- 4. Aspect -->
+    <div class="card mb6">
+      <div class="card-hd"><span class="card-t">04 — Aspect Map (Slope Orientation)</span><span class="card-m">Range: 0°–360° compass bearing</span></div>
+      <div class="card-in">
+        <p class="t-sm t-sec mb4">Aspect identifies the <strong>compass direction</strong> each slope faces. South-facing slopes (warm tones, 135°–225°) receive maximum solar radiation, leading to faster snowmelt, increased soil pore-water pressure, and consequently higher landslide susceptibility. North-facing slopes (cool tones, 315°–45°) retain moisture longer but experience freeze-thaw cyclical weakening. This directional analysis was weighted at 15% in our final Landslide Susceptibility Index (LSI) calculation.</p>
+        <div class="map" style="height:320px"><img src="assets/qgis_aspect.png" alt="Aspect Map" style="object-fit:contain; background:#1a1020;"></div>
+      </div>
+    </div>
+
+    <!-- 5. Slope -->
+    <div class="card mb6">
+      <div class="card-hd"><span class="card-t">05 — Slope Gradient Map</span><span class="card-m">Max gradient: 77° · Critical threshold: &gt;35°</span></div>
+      <div class="card-in">
+        <p class="t-sm t-sec mb4">The single most important factor in landslide susceptibility. Calculated using the <strong>QGIS native slope algorithm</strong> from the SRTM DEM. Green zones (&lt;25°) represent stable terrain. Yellow zones (25°–35°) are moderately susceptible. Red zones (&gt;35°) are critically unstable — these are the exact sectors where our hardware nodes are deployed. Statistical analysis of the study area shows <strong>68% of historical landslide events</strong> in this region occurred on slopes exceeding 35°. This layer carries the heaviest weight (30%) in our multi-criteria LSI model.</p>
+        <div class="map" style="height:320px"><img src="assets/qgis_slope.png" alt="Slope Map" style="object-fit:contain; background:#0a1a0a;"></div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="card"><div class="card-in" style="border-left:3px solid var(--blue); padding-left:1.5rem">
+      <p class="t-sm" style="color:var(--text-primary); font-weight:600; margin-bottom:0.5rem">Multi-Criteria Analysis Summary</p>
+      <p class="t-sm t-sec">By stacking these 5 derivative raster layers (DEM → Contour → Hillshade → Aspect → Slope) in a weighted overlay model, we generated the final <strong>Landslide Susceptibility Index (LSI)</strong> heatmap shown above. The LSI directly informed our hardware deployment strategy — all three sensor nodes (Alpha, Beta, Gamma) are positioned in zones scoring ≥0.72 on the 0–1 susceptibility scale, ensuring maximum detection sensitivity while minimizing false-positive triggers from geologically stable terrain.</p>
+    </div></div>
+  </div>
+
+</div></div>
+
+<!-- ═══ PG: COMMUNITY ═══ -->
+<div class="pg" id="pg-fusion"><div class="inner"><div class="g2">
+  <div class="card"><div class="card-hd"><span class="card-t">Citizen Intel Upload</span></div><div class="card-in">
+    <p class="t-sm t-sec mb6">Ground-truth visual data from locals validates automated sensor readings.</p>
+    <p class="sh">LOCATION</p><select class="fi mb4"><option>Alpha Path — Near Bridge</option><option>Beta Hillside — NH-21</option><option>Gamma Creek — Upstream</option></select>
+    <p class="sh">PHOTO EVIDENCE</p><div class="upload mb4"><div style="font-size:2rem;margin-bottom:0.5rem">📷</div><div style="font-size:0.9rem;font-weight:600;margin-bottom:0.3rem">Tap to capture or upload</div><div class="t-xs t-mut">Cracked walls, displaced soil — all relevant</div></div>
+    <p class="sh">FIELD NOTES</p><textarea class="fi mb4" rows="3" placeholder="e.g. 'Large crack on retaining wall after rain'"></textarea>
+    <button class="btn btn-p" style="width:100%;justify-content:center" onclick="alert('Intel submitted to Fusion Engine.')">Submit to Network →</button>
+  </div></div>
+  <div class="card"><div class="card-hd"><span class="card-t">Sensor + Citizen Fusion Timeline</span></div><div class="card-in"><div class="timeline">
+    <div class="tl-item"><div class="tl-dot">🌐</div><div class="tl-box"><div class="tl-time">12:00 PM — NODE 01</div><div class="tl-body">Rising moisture trend: <strong>75% saturation</strong>.</div></div></div>
+    <div class="tl-item"><div class="tl-dot" style="border-color:var(--yellow)">📸</div><div class="tl-box" style="border-color:rgba(210,153,34,0.3)"><div class="tl-time">14:30 PM — CITIZEN (T. Sharma)</div><div class="tl-body"><strong>"Water pooling, hairline cracks on retaining wall."</strong> GPS matched to Node 01.</div></div></div>
+    <div class="tl-item al"><div class="tl-dot" style="background:var(--red);border-color:var(--red);color:#fff">🤖</div><div class="tl-box"><div class="tl-time" style="color:var(--red)">14:35 PM — AI CORRELATION</div><div class="tl-body t-r"><strong>Citizen report CONFIRMED by Node 01 pitch delta 2.5°. Dual-evidence trigger. Threat elevated.</strong></div></div></div>
+    <div class="tl-item"><div class="tl-dot" style="border-color:var(--green)">📡</div><div class="tl-box"><div class="tl-time">14:36 PM — DISPATCH</div><div class="tl-body">SMS advisory dispatched to 5,420 devices in Sector Alpha.</div></div></div>
+  </div></div></div>
+</div></div></div>
+
+<!-- ═══ PG: RESPONSE ═══ -->
+<div class="pg" id="pg-response"><div class="inner" style="max-width:950px">
+  <div class="card mb6" style="border-color:rgba(248,81,73,0.2)"><div class="card-hd" style="border-color:rgba(248,81,73,0.15)"><span class="card-t t-r">Mass Civilian Broadcast System</span><span class="card-m">Telecom Gateway</span></div><div class="card-in">
+    <p class="t-sm t-sec mb6">Direct API hook. Overrides DND lists. Delivers native-language SMS to all registered devices within the geofenced danger zone in under 90 seconds.</p>
+    <button class="bc-btn" id="btn-bc">🚨 &nbsp;BROADCAST EMERGENCY ALERT TO ALL 5,420 VILLAGERS</button>
+    <div class="term" id="term"><span style="color:#3b4045">// TELECOM_GATEWAY v3.0 INITIALIZED<br>// AWAITING EXECUTION COMMAND...</span></div>
+  </div></div>
+
+  <!-- SMS Local Language Preview -->
+  <div class="card"><div class="card-hd"><span class="card-t">SMS Preview — Multi-Language</span><span class="card-m">What villagers receive</span></div><div class="card-in">
+    <p class="t-sm t-sec mb6">Preview of the emergency alert in the recipient's native language. This is the exact message pushed to 5,420 devices.</p>
+    <div class="g3">
+      <div class="sms-preview"><p class="t-xs t-mut mb2">English</p><div class="sms-phone">⚠️ LANDSLIDE ALERT: Immediate danger detected in your sector. Move to higher ground. Follow Route B to Panchayat shelter. Do NOT go downhill. — Terra-Scape EWS</div></div>
+      <div class="sms-preview"><p class="t-xs t-mut mb2">हिंदी (Hindi)</p><div class="sms-phone">⚠️ भूस्खलन चेतावनी: आपके क्षेत्र में तत्काल खतरा। ऊंचे स्थान पर जाएं। रूट B से पंचायत आश्रय तक जाएं। ढलान से नीचे न जाएं। — Terra-Scape EWS</div></div>
+      <div class="sms-preview"><p class="t-xs t-mut mb2">ڈوگری (Dogri)</p><div class="sms-phone">⚠️ زمین کھسکنے دی چتاونی: تہاڈے علاقے وچ فوری خطرہ۔ اُچی جگہ تے جاؤ۔ رستہ B نال پنچایت پناہ گاہ تکر جاؤ۔ — Terra-Scape EWS</div></div>
+    </div>
+  </div></div>
+</div></div>
+
+<!-- ═══ PG: SAFETY ═══ -->
+<div class="pg" id="pg-safety"><div class="inner"><div class="g2 mb6">
+  <div class="card"><div class="card-hd"><span class="card-t t-b">Smart Evacuation Routing</span><span class="card-m">Real-time Blockage AI</span></div><div class="card-in">
+    <p class="t-sm t-sec mb6">Predictive dynamic routing from sensor telemetry and field blockage indexing.</p>
+    <table class="rt mb4">
+      <tr><td>🛣️ <strong>Highway Route A</strong></td><td class="rt-s" id="ev-a">✅ SAFE (Primary)</td></tr>
+      <tr><td>⛰️ <strong>Uphill Trail Route B</strong></td><td class="rt-s" id="ev-b">✅ SAFE</td></tr>
+      <tr><td>🌉 <strong>Creek Bridge Route C</strong></td><td class="rt-c" id="ev-c">⚠️ RESTRICTED</td></tr>
+    </table>
+    <div class="eta-box"><div class="eta-lbl">Estimated Reach · Panchayat Shelter</div><div class="eta-val" id="eta">18 min</div><div class="t-xs t-mut" style="margin-top:4px" id="eta-p">Standard walking pace</div></div>
+  </div></div>
+  <div class="card"><div class="card-hd"><span class="card-t">Visual Safety Directives</span></div><div class="card-in">
+    <p class="t-sm t-sec mb6">Universal sticker language for instant recognition regardless of literacy.</p>
+    <div class="sticker-grid">
+      <div class="sticker"><div class="sticker-e">🚨</div><div class="sticker-tt">Siren = STOP</div><div class="sticker-ds">Halt operations when sirens sound.</div></div>
+      <div class="sticker"><div class="sticker-e">🎒</div><div class="sticker-tt">Go-Bag Ready</div><div class="sticker-ds">Grab medical kit and ID documents.</div></div>
+      <div class="sticker"><div class="sticker-e">🏃</div><div class="sticker-tt">Go Sideways</div><div class="sticker-ds">Move perpendicular to slope. Never downhill.</div></div>
+      <div class="sticker"><div class="sticker-e">📍</div><div class="sticker-tt">Meet at HQ</div><div class="sticker-ds">Rendezvous at Panchayat concrete shelter.</div></div>
+    </div>
+  </div></div>
+</div></div></div>
+
+<!-- ═══ PG: HARDWARE ═══ -->
+<div class="pg" id="pg-hw"><div class="inner">
+  <div class="g2 mb6">
+    <div class="card"><div class="card-hd"><span class="card-t">Prototype Build</span></div><div class="card-in"><img src="assets/arduino_real_photo_1774601049790.png" style="width:100%;border-radius:var(--r-md);border:1px solid var(--border-dim)"></div></div>
+    <div class="card" style="display:flex;flex-direction:column"><div class="card-hd"><span class="card-t">System Architecture</span></div><div class="card-in" style="flex:1;display:flex;flex-direction:column;gap:1rem">
+      <div class="hw"><div class="hw-chip">🧠</div><div class="hw-name">Edge Processing Unit</div><div class="hw-model">ATmega328P — Arduino Uno R3</div><ul class="hw-specs"><li>Architecture <span>8-bit | 16 MHz</span></li><li>Program Storage <span>32 KB Flash</span></li><li>ADC Resolution <span>10-bit · 6 ch</span></li><li>Protocols <span>I2C / SPI / UART</span></li><li>Voltage <span>5V DC via solar</span></li></ul></div>
+    </div></div>
+  </div>
+  <div class="g3 mb6">
+    <div class="hw"><div class="hw-chip">📐</div><div class="hw-name">Kinematic MEMS</div><div class="hw-model">MPU-6050 — InvenSense</div><ul class="hw-specs"><li>DOF <span>6-axis</span></li><li>Interface <span>I2C @ 0x68</span></li><li>Accel <span>±16 g</span></li><li>Alert <span>≥ 2.0° pitch</span></li><li>FIFO <span>1024 bytes</span></li></ul></div>
+    <div class="hw"><div class="hw-chip">💧</div><div class="hw-name">Capacitive Soil</div><div class="hw-model">Capacitive V2.0 Gold</div><ul class="hw-specs"><li>Method <span>Capacitive</span></li><li>Output <span>Analog 0–3.3V</span></li><li>Corrosion <span>Gold Plated</span></li><li>Threshold <span>≥ 80%</span></li><li>Depth <span>8 cm probe</span></li></ul></div>
+    <div class="hw"><div class="hw-chip">🌡️</div><div class="hw-name">Ambient Env</div><div class="hw-model">DHT-22 (AM2302)</div><ul class="hw-specs"><li>Temp Range <span>-40 to +80°C</span></li><li>Temp Accuracy <span>±0.5°C</span></li><li>Humidity <span>0–100% RH</span></li><li>Interface <span>Single-wire</span></li><li>Sampling <span>0.5 Hz</span></li></ul></div>
+  </div>
+  <!-- Calibration & Maintenance -->
+  <p class="sh">SENSOR CALIBRATION & MAINTENANCE</p>
+  <div class="g2">
+    <div class="card"><div class="card-hd"><span class="card-t">Current Calibration Values</span><span class="card-m">Last: Today 06:00 AM</span></div><div class="card-in">
+      <div class="alert-log" style="max-height:none">
+        <div class="al-row"><div style="min-width:180px;font-weight:600">MPU Zero Offset (X)</div><div class="t-sec" style="flex:1">0.02°</div><div class="al-level s">PASS</div></div>
+        <div class="al-row"><div style="min-width:180px;font-weight:600">MPU Zero Offset (Y)</div><div class="t-sec" style="flex:1">0.01°</div><div class="al-level s">PASS</div></div>
+        <div class="al-row"><div style="min-width:180px;font-weight:600">Moisture Dry Baseline</div><div class="t-sec" style="flex:1">280 ADC (3.3V ref)</div><div class="al-level s">PASS</div></div>
+        <div class="al-row"><div style="min-width:180px;font-weight:600">Moisture Wet Reference</div><div class="t-sec" style="flex:1">620 ADC</div><div class="al-level s">PASS</div></div>
+        <div class="al-row"><div style="min-width:180px;font-weight:600">DHT-22 Temp Variance</div><div class="t-sec" style="flex:1">±0.3°C from reference</div><div class="al-level s">PASS</div></div>
+      </div>
+    </div></div>
+    <div class="card"><div class="card-hd"><span class="card-t">Maintenance Schedule</span></div><div class="card-in">
+      <div class="alert-log" style="max-height:none">
+        <div class="al-row"><div style="min-width:160px;font-weight:600">Next Calibration</div><div class="t-sec" style="flex:1">In 15 days</div><div class="al-level s">OK</div></div>
+        <div class="al-row"><div style="min-width:160px;font-weight:600">Solar Panel Clean</div><div class="t-sec" style="flex:1">In 7 days</div><div class="al-level wn">DUE SOON</div></div>
+        <div class="al-row"><div style="min-width:160px;font-weight:600">Antenna Inspection</div><div class="t-sec" style="flex:1">In 30 days</div><div class="al-level s">OK</div></div>
+        <div class="al-row"><div style="min-width:160px;font-weight:600">Firmware Update</div><div class="t-sec" style="flex:1">v1.4.2 — Latest</div><div class="al-level s">CURRENT</div></div>
+      </div>
+    </div></div>
+  </div>
+</div></div>
+
+<!-- ═══ PG: SIMULATION ═══ -->
+<div class="pg" id="pg-sim"><div class="inner" style="max-width:850px">
+  <div class="card" style="border-color:rgba(248,81,73,0.2)"><div class="card-hd" style="border-color:rgba(248,81,73,0.15)"><span class="card-t t-r">⚡ Algorithm Simulation Engine</span><span class="card-m">Evaluators / Judges</span></div><div class="card-in">
+    <p class="t-sm t-sec mb6">Inject synthetic physics data. Watch the Dashboard KPIs, banner, AI Ring, Smart Evacuation, and Alert Log respond in real-time.</p>
+    <div class="fc">
+      <div class="sim-row"><label>Soil Moisture Saturation <span class="t-b" id="sv-m">45%</span></label><input type="range" id="si-m" min="0" max="100" value="45"></div>
+      <div class="sim-row"><label>Ground Pitch Tilt (MPU) <span class="t-r" id="sv-t">0.0°</span></label><input type="range" id="si-t" min="0" max="15" step="0.5" value="0"></div>
+      <div class="sim-row"><label>Ambient Temperature <span class="t-y" id="sv-tp">24.5°C</span></label><input type="range" id="si-tp" min="0" max="45" step="0.5" value="24.5"></div>
+    </div>
+  </div></div>
+</div></div>
+
+<!-- OFFLINE -->
+<div id="offline-msg" style="display:none;margin:2rem;text-align:center;padding:1rem;background:var(--red);color:#fff;border-radius:var(--r-md);font-size:0.9rem;font-weight:600">⚠ Chart.js offline. Tabs, threat engine, and evacuation remain fully functional.</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>Terra-Scape EWS v3.0 · Team Geo-Scape · Make in India 🇮🇳</div>
+  <div>Designed for Himalayan Watershed Regions · <span id="year">2026</span></div>
+</footer>
+
+<script src="app.js"></script>
+</body></html>
