@@ -1,4 +1,0 @@
-
-
-Adafruit MPU6050
-LiquidCrystal I2C
